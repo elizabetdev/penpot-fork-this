@@ -22,7 +22,6 @@ function formatTime(seconds: number): string {
 
 export const LyricVisualizer: React.FC<LyricVisualizerProps> = ({
   currentTime,
-  ellipseRadius,
   duration,
 }) => {
   const [currentLyric, setCurrentLyric] = useState<string>("");
@@ -36,13 +35,13 @@ export const LyricVisualizer: React.FC<LyricVisualizerProps> = ({
     <div
       className={`w-full my-6 text-center text-black ${permanentMarker.className}`}
     >
-      <p>{formatTime(currentTime)}</p>
+      <span className="text-zinc-600">
+        {currentTime ? currentTime.toFixed(2) : "0"} sec
+      </span>
       <p
-        className={`text-3xl ${
-          ellipseRadius < 94 ? "text-white" : "text-[--accent]"
-        } transition transition-all duration-200 bg-red-100`}
+        className={`text-3xl text-zinc-800 transition transition-all duration-200`}
       >
-        {currentLyric || "Hit that play button and let's go!"}
+        {currentLyric || "Press play button"}
       </p>
     </div>
   );
